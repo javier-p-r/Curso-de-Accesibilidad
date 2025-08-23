@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Curso: Accesibilidad en InDesign y PDF</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    :root {
+      --primary: rgb(37, 99, 235);
+      --primary-light: rgba(37, 99, 235, 0.1);
+      --primary-gradient: linear-gradient(135deg, rgb(37, 99, 235), rgb(29, 78, 216));
+      --text-primary: #1a202c;
+      --text-secondary: #4a5568;
+      --text-muted: #718096;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --bg-card: #ffffff;
+      --border: #e2e8f0;
+      --border-light: #f1f5f9;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --radius: 12px;
+      --radius-lg: 16px;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #8b5cf6;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(to bottom right, #f8fafc, #e2e8f0);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .hero {
+      background: var(--primary-gradient);
+      color: white;
+      padding: 4rem 0 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+    }
+
+    .hero-content {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.025em;
+    }
+
+    .hero .subtitle {
+      font-size: 1.25rem;
+      font-weight: 300;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .tags {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .main-content {
+      padding: 3rem 0;
+    }
+
+    .course-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .info-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-light);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .info-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--primary-gradient);
+    }
+
+    .info-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .info-card p {
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .objectives-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-light);
+    }
+
+    .objectives-card h2 {
+      font-size: 1.875rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .objectives-card ul {
+      list-style: none;
+      margin: 0;
+    }
+
+    .objectives-card li {
+      margin-bottom: 1rem;
+      padding-left: 2rem;
+      position: relative;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .objectives-card li::before {
+      content: '🎯';
+      position: absolute;
+      left: 0;
+      font-size: 1.2em;
+    }
+
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .module-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-light);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .module-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+
+    .module-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--primary-gradient);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .module-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .module-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .module-number {
+      background: var(--primary-gradient);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .module-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .module-duration {
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-left: auto;
+    }
+
+    .module-content {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .module-content ul {
+      margin-top: 1rem;
+      padding-left: 1.5rem;
+    }
+
+    .module-content li {
+      margin-bottom: 0.5rem;
+    }
+
+    .methodology-section, .materials-section, .results-section {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-light);
+    }
+
+    .methodology-section h2, .materials-section h2, .results-section h2 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .methodology-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .methodology-item {
+      background: var(--bg-secondary);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .methodology-item h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .methodology-item p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .materials-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      list-style: none;
+      margin: 0;
+    }
+
+    .materials-list li {
+      background: var(--bg-secondary);
+      border-radius: var(--radius);
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .materials-list li::before {
+      content: '📦';
+      font-size: 1.5rem;
+    }
+
+    .results-list {
+      list-style: none;
+      margin: 0;
+    }
+
+    .results-list li {
+      margin-bottom: 1rem;
+      padding-left: 2rem;
+      position: relative;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .results-list li::before {
+      content: '✅';
+      position: absolute;
+      left: 0;
+      font-size: 1.2em;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 2rem 0;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      border-top: 1px solid var(--border);
+      background: var(--bg-secondary);
+    }
+
+    /* Animaciones */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .module-card {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .module-card:nth-child(even) {
+      animation-delay: 0.1s;
+    }
+
+    .module-card:nth-child(odd) {
+      animation-delay: 0.2s;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero .subtitle {
+        font-size: 1.125rem;
+      }
+      
+      .container {
+        padding: 0 1rem;
+      }
+      
+      .course-info {
+        grid-template-columns: 1fr;
+      }
+      
+      .modules-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .methodology-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Modo oscuro */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --text-primary: #f7fafc;
+        --text-secondary: #e2e8f0;
+        --text-muted: #a0aec0;
+        --bg-primary: #1a202c;
+        --bg-secondary: #2d3748;
+        --bg-card: #2d3748;
+        --border: #4a5568;
+        --border-light: #4a5568;
+      }
+      
+      body {
+        background: linear-gradient(to bottom right, #1a202c, #2d3748);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>📚 Accesibilidad en InDesign y PDF</h1>
+        <p class="subtitle">Programa Oficial del Curso - Diseño inclusivo y documentos accesibles</p>
+        <div class="tags">
+          <span class="tag">12 horas</span>
+          <span class="tag">Presencial / Online</span>
+          <span class="tag">Adobe InDesign</span>
+          <span class="tag">PDF Accesible</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      
+      <section class="course-info">
+        <div class="info-card">
+          <h3>⏱️ Duración</h3>
+          <p>12 horas</p>
+        </div>
+        <div class="info-card">
+          <h3>💻 Modalidad</h3>
+          <p>Presencial / Online</p>
+        </div>
+        <div class="info-card">
+          <h3>👥 Dirigido a</h3>
+          <p>Maquetistas y diseñadores</p>
+        </div>
+        <div class="info-card">
+          <h3>🛠️ Herramientas</h3>
+          <p>Adobe InDesign y Acrobat Pro</p>
+        </div>
+      </section>
+
+      <section class="objectives-card">
+        <h2>🎯 Objetivos del curso</h2>
+        <ul>
+          <li>Comprender los principios de accesibilidad aplicados a documentos PDF</li>
+          <li>Aprender a diseñar y maquetar documentos accesibles desde InDesign</li>
+          <li>Conocer el proceso de verificación y corrección de accesibilidad en Acrobat Pro</li>
+          <li>Aplicar buenas prácticas para cumplir con normativas internacionales (WCAG 2.1/2.2 y PDF/UA)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 2rem; text-align: center; color: var(--text-primary);">📑 Contenidos del curso</h2>
+        <div class="modules-grid">
+          
+          <div class="module-card" onclick="window.open('modulos/CAmodulo01.html', '_blank')">
+            <div class="module-header">
+              <div class="module-number">1</div>
+              <div class="module-title">Introducción a la accesibilidad en publicaciones digitales</div>
+              <div class="module-duration">2h</div>
+            </div>
+            <div class="module-content">
+              <p>Fundamentos de accesibilidad digital y normativas aplicables.</p>
+              <ul>
+                <li>Qué es la accesibilidad digital y por qué importa</li>
+                <li>Principios POUR: Perceptible, Operable, Comprensible y Robusto</li>
+                <li>Discapacidades y tecnologías de asistencia</li>
+                <li>Normativas aplicables: WCAG 2.1/2.2 y PDF/UA (ISO 14289)</li>
+                <li><strong>Actividad:</strong> análisis de un PDF no accesible con un lector de pantalla</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="module-card" onclick="window.open('modulos/CAmodulo02.html', '_blank')">
+            <div class="module-header">
+              <div class="module-number">2</div>
+              <div class="module-title">Preparación del documento en InDesign</div>
+              <div class="module-duration">2h</div>
+            </div>
+            <div class="module-content">
+              <p>Configuración inicial y estructura del documento accesible.</p>
+              <ul>
+                <li>Configuración inicial de un proyecto accesible</li>
+                <li>Estilos de párrafo y carácter</li>
+                <li>Jerarquía de títulos y encabezados</li>
+                <li>Tablas y listas accesibles</li>
+                <li>Contraste y tipografía legible</li>
+                <li>Metadatos: título, autor, idioma</li>
+                <li><strong>Ejercicio:</strong> creación de una plantilla accesible en InDesign</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="module-card" onclick="window.open('modulos/CAmodulo03.html', '_blank')">
+            <div class="module-header">
+              <div class="module-number">3</div>
+              <div class="module-title">Elementos accesibles en InDesign</div>
+              <div class="module-duration">2h</div>
+            </div>
+            <div class="module-content">
+              <p>Configuración de elementos específicos para accesibilidad.</p>
+              <ul>
+                <li>Texto alternativo en imágenes y gráficos</li>
+                <li>Hipervínculos accesibles</li>
+                <li>Orden de lectura con el panel Artículos</li>
+                <li>Inclusión de marcadores de navegación</li>
+                <li><strong>Ejercicio:</strong> maquetación de una página con elementos accesibles</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="module-card" onclick="window.open('modulos/CAmodulo04.html', '_blank')">
+            <div class="module-header">
+              <div class="module-number">4</div>
+              <div class="module-title">Exportación de PDF desde InDesign</div>
+              <div class="module-duration">1h</div>
+            </div>
+            <div class="module-content">
+              <p>Proceso correcto de exportación manteniendo la accesibilidad.</p>
+              <ul>
+                <li>Opciones de exportación accesible</li>
+                <li>Diferencias entre PDF de impresión e interactivo</li>
+                <li>Conservación de etiquetas y estructura</li>
+                <li><strong>Ejercicio:</strong> exportar y revisar un PDF</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="module-card" onclick="window.open('modulos/CAmodulo05.html', '_blank')">
+            <div class="module-header">
+              <div class="module-number">5</div>
+              <div class="module-title">Verificación y corrección en Acrobat Pro</div>
+              <div class="module-duration">2h</div>
+            </div>
+            <div class="module-content">
+              <p>Herramientas de verificación y corrección de accesibilidad.</p>
+              <ul>
+                <li>Uso del comprobador de accesibilidad en Acrobat</li>
+                <li>Edición de etiquetas en el panel de etiquetas</li>
+                <li>Verificación del orden de lectura</li>
+                <li>Validación con PAC (PDF Accessibility Checker)</li>
+                <li>Pruebas con lectores de pantalla (NVDA, JAWS, VoiceOver)</li>
+                <li><strong>Ejercicio:</strong> detección y corrección de errores en un PDF</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="module-card" onclick="window.open('modulos/CAmodulo06.html', '_blank')">
+            <div class="module-header">
+              <div class="module-number">6</div>
+              <div class="module-title">Formularios y elementos interactivos accesibles</div>
+              <div class="module-duration">1h</div>
+            </div>
+            <div class="module-content">
+              <p>Creación de formularios y elementos interactivos accesibles.</p>
+              <ul>
+                <li>Creación de formularios accesibles en Acrobat</li>
+                <li>Etiquetado de campos: nombre, descripción, orden de tabulación</li>
+                <li>Botones, enlaces y navegación</li>
+                <li><strong>Ejercicio:</strong> diseño y prueba de un formulario accesible</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="module-card" onclick="window.open('modulos/CAmodulo07.html', '_blank')">
+            <div class="module-header">
+              <div class="module-number">7</div>
+              <div class="module-title">Buenas prácticas y casos prácticos</div>
+              <div class="module-duration">1h</div>
+            </div>
+            <div class="module-content">
+              <p>Integración de conocimientos y mejores prácticas.</p>
+              <ul>
+                <li>Checklist de accesibilidad</li>
+                <li>Errores comunes y cómo evitarlos</li>
+                <li><strong>Taller:</strong> crear, exportar y validar un documento completo</li>
+                <li>Recomendaciones de flujo de trabajo en equipo</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="module-card" onclick="window.open('modulos/CAmodulo08.html', '_blank')">
+            <div class="module-header">
+              <div class="module-number">8</div>
+              <div class="module-title">Futuro y continuidad</div>
+              <div class="module-duration">1h</div>
+            </div>
+            <div class="module-content">
+              <p>Perspectivas futuras y recursos para el aprendizaje continuo.</p>
+              <ul>
+                <li>Relación con otros formatos accesibles: EPUB y HTML</li>
+                <li>Recursos y guías oficiales (W3C, Adobe, DAISY, IAAP)</li>
+                <li><strong>Evaluación final:</strong> entrega de un documento accesible</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="methodology-section">
+        <h2>🛠 Metodología</h2>
+        <div class="methodology-grid">
+          <div class="methodology-item">
+            <h3>Exposición teórica</h3>
+            <p>Conceptos clave con ejemplos reales y casos de uso</p>
+          </div>
+          <div class="methodology-item">
+            <h3>Demostraciones en vivo</h3>
+            <p>Procesos paso a paso en las herramientas de Adobe</p>
+          </div>
+          <div class="methodology-item">
+            <h3>Ejercicios prácticos</h3>
+            <p>Actividades guiadas en InDesign y Acrobat Pro</p>
+          </div>
+          <div class="methodology-item">
+            <h3>Talleres integradores</h3>
+            <p>Proyectos completos al final de módulos clave</p>
+          </div>
+          <div class="methodology-item">
+            <h3>Evaluación práctica</h3>
+            <p>Entrega final de un PDF completamente accesible</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="materials-section">
+        <h2>📦 Materiales incluidos</h2>
+        <ul class="materials-list">
+          <li>Guía paso a paso en PDF</li>
+          <li>Plantillas de InDesign accesibles</li>
+          <li>Ejemplos de PDFs accesibles y no accesibles</li>
+          <li>Checklist de verificación de accesibilidad</li>
+        </ul>
+      </section>
+
+      <section class="results-section">
+        <h2>✅ Resultados esperados</h2>
+        <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">Al finalizar el curso, el participante será capaz de:</p>
+        <ul class="results-list">
+          <li>Crear documentos accesibles en InDesign aplicando buenas prácticas</li>
+          <li>Exportar correctamente a PDF accesible</li>
+          <li>Verificar y corregir accesibilidad en Acrobat Pro</li>
+          <li>Cumplir con las normativas WCAG 2.1/2.2 y PDF/UA</li>
+          <li>Incorporar la accesibilidad en su flujo de trabajo editorial</li>
+        </ul>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025. Curso de Accesibilidad en InDesign y PDF - Material formativo especializado</p>
+    </div>
+  </footer>
+
+  <script>
+    // Agregar efecto de click suave a las cards de módulos
+    document.querySelectorAll('.module-card').forEach(card => {
+      card.addEventListener('click', function() {
+        // Efecto visual de click
+        this.style.transform = 'scale(0.98)';
+        setTimeout(() => {
+          this.style.transform = 'translateY(-4px)';
+        }, 100);
+      });
+    });
+  </script>
+</body>
+</html>
