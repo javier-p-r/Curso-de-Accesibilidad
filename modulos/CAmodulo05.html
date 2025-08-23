@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 5: Verificación y corrección en Acrobat Pro</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+            background: #f9f9f9;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: -20px -20px 30px -20px;
+            font-size: 1.8em;
+        }
+        h2 {
+            color: #4a5568;
+            border-left: 4px solid #667eea;
+            padding-left: 15px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #667eea;
+            margin-top: 25px;
+        }
+        .objectives {
+            background: #e6f3ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .tip {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #f39c12;
+        }
+        .best-practices {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .activity {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .time-info {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+        code {
+            background: #f1f3f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        .nav-button {
+            background: #667eea;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            margin: 20px 0;
+        }
+        .nav-button:hover {
+            background: #5a67d8;
+        }
+        .nav-button:focus {
+            outline: 2px solid #667eea;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../curso_accesibilidad_html.html" class="nav-button" aria-label="Volver a la página anterior">
+            ← Volver
+        </a>
+        
+        <h1><span class="emoji">📘</span>Módulo 5: Verificación y corrección en Acrobat Pro</h1>
+
+        <div class="objectives">
+            <h2><span class="emoji">🎯</span>Objetivos del módulo</h2>
+            <ul>
+                <li>Aprender a usar el <strong>Comprobador de accesibilidad</strong> de Acrobat.</li>
+                <li>Interpretar y editar el <strong>panel de etiquetas</strong>.</li>
+                <li>Verificar y corregir el <strong>orden de lectura</strong>.</li>
+                <li>Revisar metadatos, idioma y contraste.</li>
+                <li>Usar herramientas externas como <strong>PAC (PDF Accessibility Checker)</strong>.</li>
+                <li>Probar el documento con <strong>lectores de pantalla reales</strong>.</li>
+            </ul>
+        </div>
+
+        <h2><span class="emoji">📝</span>Contenido teórico</h2>
+
+        <h3>1. El Comprobador de accesibilidad en Acrobat</h3>
+        <ul>
+            <li>Se encuentra en: <code>Herramientas > Accesibilidad > Comprobador de accesibilidad</code>.</li>
+            <li>Realiza un análisis automático del PDF y muestra:
+                <ul>
+                    <li>Errores (elementos obligatorios faltantes).</li>
+                    <li>Advertencias (cosas a revisar manualmente).</li>
+                    <li>Pistas de mejora.</li>
+                </ul>
+            </li>
+            <li>Importante: <strong>no sustituye la revisión manual</strong>, pero ayuda a detectar fallos básicos.</li>
+        </ul>
+
+        <div class="tip">
+            <strong>💡 Ejemplo:</strong><br>
+            El comprobador detecta que una imagen no tiene texto alternativo, pero no sabe si el texto alternativo es adecuado → eso debe revisarlo una persona.
+        </div>
+
+        <h3>2. Panel de etiquetas</h3>
+        <ul>
+            <li>Acceso: <code>Ver > Paneles > Etiquetas</code>.</li>
+            <li>Es la representación semántica del documento (como el HTML de una web).</li>
+            <li>Cada elemento debe tener una etiqueta correcta:
+                <ul>
+                    <li>&lt;H1&gt;, &lt;H2&gt;, &lt;P&gt; para párrafos.</li>
+                    <li>&lt;L&gt; y &lt;LI&gt; para listas.</li>
+                    <li>&lt;Table&gt;, &lt;TH&gt;, &lt;TD&gt; para tablas.</li>
+                </ul>
+            </li>
+            <li>Posible editar etiquetas manualmente si InDesign no las generó bien.</li>
+        </ul>
+
+        <div class="tip">
+            <strong>💡 Ejemplo:</strong><br>
+            Un título exportado como párrafo simple → en Acrobat se puede reetiquetar como &lt;H1&gt;.
+        </div>
+
+        <h3>3. Orden de lectura</h3>
+        <ul>
+            <li>Se revisa desde: <code>Herramientas > Accesibilidad > Orden de lectura</code> o en el panel "Orden".</li>
+            <li>Debe coincidir con la lógica de lectura natural.</li>
+            <li>Permite arrastrar y reordenar elementos si están fuera de lugar.</li>
+        </ul>
+
+        <div class="tip">
+            <strong>💡 Ejemplo:</strong><br>
+            Un folleto con dos columnas → Acrobat puede leer primero la segunda columna → hay que reordenar.
+        </div>
+
+        <h3>4. Metadatos y propiedades</h3>
+        <p>En <code>Archivo > Propiedades</code>:</p>
+        <ul>
+            <li>Revisar título del documento.</li>
+            <li>Definir idioma del contenido.</li>
+            <li>Verificar autor y palabras clave.</li>
+        </ul>
+        <p>El título debe mostrarse en la barra de Acrobat (no solo el nombre del archivo).</p>
+
+        <h3>5. Revisión de contraste</h3>
+        <ul>
+            <li>Acrobat ofrece revisión básica, pero es mejor usar herramientas externas (ej. Colour Contrast Analyser).</li>
+            <li>Importante en documentos con fondos de color y texto superpuesto.</li>
+        </ul>
+
+        <h3>6. Validación con PAC (PDF Accessibility Checker)</h3>
+        <ul>
+            <li>Herramienta gratuita y especializada en PDF/UA.</li>
+            <li>Permite validar:
+                <ul>
+                    <li>Etiquetado correcto.</li>
+                    <li>Orden de lectura.</li>
+                    <li>Presencia de texto alternativo.</li>
+                    <li>Compatibilidad con PDF/UA.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="tip">
+            <strong>💡 Recomendación:</strong> usar PAC como <strong>segunda validación</strong> tras Acrobat.
+        </div>
+
+        <h3>7. Prueba con lectores de pantalla</h3>
+        <ul>
+            <li>Acrobat no es suficiente → probar con herramientas reales:
+                <ul>
+                    <li><strong>NVDA</strong> (gratuito, Windows).</li>
+                    <li><strong>JAWS</strong> (profesional, Windows).</li>
+                    <li><strong>VoiceOver</strong> (Mac/iOS).</li>
+                </ul>
+            </li>
+            <li>Permite verificar la experiencia del usuario real.</li>
+        </ul>
+
+        <div class="best-practices">
+            <h2><span class="emoji">✅</span>Buenas prácticas</h2>
+            <ul>
+                <li>Pasar siempre el comprobador de accesibilidad <strong>y</strong> revisión manual.</li>
+                <li>Usar el panel de etiquetas como referencia de la estructura real del PDF.</li>
+                <li>Validar con PAC para asegurar cumplimiento con PDF/UA.</li>
+                <li>Hacer pruebas rápidas con un lector de pantalla (al menos NVDA).</li>
+            </ul>
+        </div>
+
+        <div class="activity">
+            <h2><span class="emoji">🧩</span>Actividad práctica</h2>
+            <ol>
+                <li>Proporcionar un <strong>PDF exportado desde InDesign con errores</strong> (imágenes sin alt, encabezados mal etiquetados, orden de lectura incorrecto).</li>
+                <li>Pasar el <strong>Comprobador de accesibilidad de Acrobat</strong>.</li>
+                <li>Editar etiquetas y reordenar la lectura desde los paneles.</li>
+                <li>Corregir metadatos y revisar contraste.</li>
+                <li>Validar el documento con <strong>PAC</strong>.</li>
+                <li>Probar el documento con <strong>NVDA</strong> y comentar la experiencia.</li>
+            </ol>
+        </div>
+
+        <h2><span class="emoji">📦</span>Material de apoyo sugerido</h2>
+        <ul>
+            <li>PDF de práctica con errores intencionales.</li>
+            <li>Guía rápida de uso del panel de etiquetas.</li>
+            <li>Instrucciones de instalación y uso de PAC.</li>
+            <li>Tutorial básico de NVDA.</li>
+        </ul>
+
+        <div class="time-info">
+            <strong>👉 Este módulo ocupa 2h:</strong>
+            <ul>
+                <li>45 min teoría + demostraciones en Acrobat.</li>
+                <li>1h práctica de corrección en PDF real.</li>
+                <li>15 min prueba con lector de pantalla y debate.</li>
+            </ul>
+        </div>
+        
+        <a href="../curso_accesibilidad_html.html" class="nav-button" aria-label="Volver a la página anterior">
+            ← Volver
+        </a>
+    </div>
+</body>
+</html>

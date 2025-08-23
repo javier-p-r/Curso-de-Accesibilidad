@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 6: Formularios y elementos interactivos accesibles</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+            background: #f9f9f9;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: -20px -20px 30px -20px;
+            font-size: 1.8em;
+        }
+        h2 {
+            color: #4a5568;
+            border-left: 4px solid #667eea;
+            padding-left: 15px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #667eea;
+            margin-top: 25px;
+        }
+        .objectives {
+            background: #e6f3ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .tip {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #f39c12;
+        }
+        .best-practices {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .activity {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .time-info {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+        code {
+            background: #f1f3f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        .nav-button {
+            background: #667eea;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            margin: 20px 0;
+        }
+        .nav-button:hover {
+            background: #5a67d8;
+        }
+        .nav-button:focus {
+            outline: 2px solid #667eea;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../curso_accesibilidad_html.html" class="nav-button" aria-label="Volver a la página anterior">
+            ← Volver
+        </a>
+        
+        <h1><span class="emoji">📘</span>Módulo 6: Formularios y elementos interactivos accesibles</h1>
+
+        <div class="objectives">
+            <h2><span class="emoji">🎯</span>Objetivos del módulo</h2>
+            <ul>
+                <li>Aprender a crear formularios accesibles en Acrobat.</li>
+                <li>Etiquetar correctamente los campos de formulario.</li>
+                <li>Definir un <strong>orden de tabulación lógico</strong>.</li>
+                <li>Hacer accesibles botones y enlaces.</li>
+                <li>Validar la accesibilidad de formularios con lectores de pantalla.</li>
+            </ul>
+        </div>
+
+        <h2><span class="emoji">📝</span>Contenido teórico</h2>
+
+        <h3>1. Creación de formularios accesibles</h3>
+        <ul>
+            <li>Desde InDesign → <strong>Formulario interactivo</strong> (botones, campos de texto, casillas de verificación).</li>
+            <li>En Acrobat → <code>Preparar formulario</code>:
+                <ul>
+                    <li>Detecta automáticamente campos, pero hay que revisarlos.</li>
+                    <li>Se deben asignar nombres y etiquetas accesibles.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="tip">
+            <strong>💡 Ejemplo:</strong><br>
+            Si un campo aparece como "Campo de texto 1", el lector de pantalla leerá eso.<br>
+            Debe renombrarse a: "Introduce tu nombre completo".
+        </div>
+
+        <h3>2. Etiquetado de campos</h3>
+        <p>Cada campo debe tener:</p>
+        <ul>
+            <li><strong>Nombre accesible</strong> (lo que identifica el campo).</li>
+            <li><strong>Descripción</strong> si hace falta aclarar instrucciones.</li>
+        </ul>
+        <p>Casillas de verificación y botones deben tener etiquetas claras.</p>
+
+        <div class="tip">
+            <strong>💡 Ejemplo:</strong><br>
+            Un botón que dice "Enviar" → correcto.<br>
+            Un botón que solo tiene un icono → inaccesible si no se etiqueta.
+        </div>
+
+        <h3>3. Orden de tabulación</h3>
+        <ul>
+            <li>El usuario debe poder recorrer el formulario con el teclado (Tab ↹).</li>
+            <li>Orden lógico: de arriba a abajo y de izquierda a derecha.</li>
+            <li>En Acrobat se puede <strong>reorganizar el orden de tabulación</strong> desde el panel de campos.</li>
+        </ul>
+
+        <div class="tip">
+            <strong>💡 Ejemplo:</strong><br>
+            Si el tabulador pasa primero por el botón de "Enviar" antes de llegar a los campos → mala experiencia de usuario.
+        </div>
+
+        <h3>4. Botones, enlaces y navegación</h3>
+        <ul>
+            <li>Botones deben tener texto o una etiqueta accesible.</li>
+            <li>Los enlaces en formularios deben ser descriptivos.</li>
+            <li>Evitar instrucciones visuales (ej. "pulse el botón verde").</li>
+        </ul>
+
+        <h3>5. Validación de formularios</h3>
+        <ul>
+            <li>Usar <strong>Comprobador de accesibilidad de Acrobat</strong> para verificar que los campos están etiquetados.</li>
+            <li>Probar con un lector de pantalla:
+                <ul>
+                    <li>NVDA o JAWS leen "Introduce tu nombre" → correcto.</li>
+                    <li>Si leen "Campo de texto 1" → error.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="best-practices">
+            <h2><span class="emoji">✅</span>Buenas prácticas</h2>
+            <ul>
+                <li>Usar etiquetas claras y concisas en todos los campos.</li>
+                <li>Mantener un orden lógico de tabulación.</li>
+                <li>No usar color como única señal de instrucciones.</li>
+                <li>Probar siempre con teclado y lector de pantalla.</li>
+            </ul>
+        </div>
+
+        <div class="activity">
+            <h2><span class="emoji">🧩</span>Actividad práctica</h2>
+            <ol>
+                <li>Proporcionar un PDF con un <strong>formulario sin etiquetas ni orden de tabulación</strong>.</li>
+                <li>En Acrobat:
+                    <ul>
+                        <li>Asignar nombres accesibles a los campos.</li>
+                        <li>Reorganizar el orden de tabulación.</li>
+                        <li>Revisar botones y enlaces.</li>
+                    </ul>
+                </li>
+                <li>Probar el formulario con teclado y con NVDA.</li>
+            </ol>
+        </div>
+
+        <h2><span class="emoji">📦</span>Material de apoyo sugerido</h2>
+        <ul>
+            <li>Ejemplo de formulario inaccesible (campos sin nombre).</li>
+            <li>Plantilla de formulario accesible en InDesign.</li>
+            <li>Tutorial de "Preparar formulario" en Acrobat.</li>
+        </ul>
+
+        <div class="time-info">
+            <strong>👉 Este módulo ocupa 1h:</strong>
+            <ul>
+                <li>20 min teoría + demostración en Acrobat.</li>
+                <li>30 min práctica en clase con formulario real.</li>
+                <li>10 min prueba con lector de pantalla y conclusiones.</li>
+            </ul>
+        </div>
+        
+        <a href="../curso_accesibilidad_html.html" class="nav-button" aria-label="Volver a la página anterior">
+            ← Volver
+        </a>
+    </div>
+</body>
+</html>

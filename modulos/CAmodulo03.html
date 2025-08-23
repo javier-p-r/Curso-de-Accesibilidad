@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 3: Elementos accesibles en InDesign</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 25px;
+            background: white;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            border-radius: 25px;
+            box-shadow: 0 30px 100px rgba(102, 126, 234, 0.2);
+            animation: slideIn 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
+            background-size: 200% 100%;
+            animation: gradient-flow 4s ease infinite;
+        }
+        
+        @keyframes gradient-flow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(60px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        
+        .nav-button {
+            background: #667eea;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            margin: 20px 0;
+        }
+        .nav-button:hover {
+            background: #5a67d8;
+        }
+        .nav-button:focus {
+            outline: 2px solid #667eea;
+            outline-offset: 2px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 45px 35px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.4);
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 20px,
+                rgba(255,255,255,0.03) 20px,
+                rgba(255,255,255,0.03) 40px
+            );
+            animation: diagonal-move 15s linear infinite;
+        }
+        
+        @keyframes diagonal-move {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .header h1 {
+            font-size: 2.4em;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .emoji {
+            font-size: 1.3em;
+            margin-right: 12px;
+            display: inline-block;
+            animation: wiggle 3s ease-in-out infinite;
+        }
+        
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+        
+        .section {
+            margin-bottom: 45px;
+            padding: 40px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 20px;
+            border: 1px solid #e9ecef;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.05), transparent);
+            transition: left 0.8s ease;
+        }
+        
+        .section:hover::before {
+            left: 100%;
+        }
+        
+        .section:hover {
+            transform: translateY(-10px) scale(1.01);
+            box-shadow: 0 25px 60px rgba(102, 126, 234, 0.15);
+            border-color: #667eea;
+        }
+        
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 2em;
+            border-bottom: 3px solid #e3f2fd;
+            padding-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section h3 {
+            color: #495057;
+            margin: 35px 0 25px 0;
+            font-size: 1.5em;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .section h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+        
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .objective-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.1);
+            border-left: 6px solid #764ba2;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .objective-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            transition: width 0.4s ease;
+        }
+        
+        .objective-card:hover::after {
+            width: 100%;
+        }
+        
+        .objective-card:hover {
+            transform: translateX(20px) translateY(-5px);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.2);
+            border-left-color: #667eea;
+        }
+        
+        .element-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 35px 0;
+        }
+        
+        .element-card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            border-top: 5px solid;
+        }
+        
+        .element-card:nth-child(1) { border-top-color: #e74c3c; }
+        .element-card:nth-child(2) { border-top-color: #f39c12; }
+        .element-card:nth-child(3) { border-top-color: #2ecc71; }
+        .element-card:nth-child(4) { border-top-color: #3498db; }
+        .element-card:nth-child(5) { border-top-color: #9b59b6; }
+        
+        .element-card:hover {
+            transform: translateY(-15px) rotate(1deg);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .element-card h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            position: relative;
+        }
+        
+        .element-card h4::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: inherit;
+        }
+        
+        .alt-text-demo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #fff5f5 0%, #f0f9ff 100%);
+            border-radius: 15px;
+            border: 2px dashed #667eea;
+        }
+        
+        .alt-demo-bad, .alt-demo-good {
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .alt-demo-bad {
+            background: linear-gradient(135deg, #ffebee, #fce4ec);
+            border: 2px solid #f48fb1;
+        }
+        
+        .alt-demo-good {
+            background: linear-gradient(135deg, #e8f5e8, #f3e5f5);
+            border: 2px solid #81c784;
+        }
+        
+        .alt-demo-bad::before {
+            content: '❌';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: inherit;
+            padding: 8px;
+            border-radius: 50%;
+            font-size: 1.2em;
+        }
+        
+        .alt-demo-good::before {
+            content: '✅';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: inherit;
+            padding: 8px;
+            border-radius: 50%;
+            font-size: 1.2em;
+        }
+        
+        .link-demo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .link-bad, .link-good {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .link-bad {
+            background: #ffebee;
+            border: 2px solid #f48fb1;
+        }
+        
+        .link-good {
+            background: #e8f5e8;
+            border: 2px solid #81c784;
+        }
+        
+        .reading-order-visual {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            padding: 35px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 3px solid #667eea;
+            position: relative;
+        }
+        
+        .reading-order-visual::before {
+            content: '📖';
+            position: absolute;
+            top: -20px;
+            left: 35px;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            padding: 10px 15px;
+            font-size: 1.5em;
+            border-radius: 50%;
+        }
+        
+        .flow-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 25px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .flow-step {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            min-width: 120px;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .flow-step::after {
+            content: '→';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5em;
+            color: #667eea;
+        }
+        
+        .flow-step:last-child::after {
+            display: none;
+        }
+        
+        .flow-step:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.2);
+        }
+        
+        .typography-tips {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .typo-tip {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-bottom: 4px solid #667eea;
+        }
+        
+        .typo-tip:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.15);
+        }
+        
+        .typo-tip h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .example-box {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            border: 2px solid #ffcc02;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(255, 193, 7, 0.15);
+        }
+        
+        .example-box::before {
+            content: '💡';
+            position: absolute;
+            top: -18px;
+            left: 30px;
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            padding: 10px 15px;
+            font-size: 1.4em;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.2);
+        }
+        
+        .practices-box {
+            background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%);
+            border: 2px solid #28a745;
+            border-radius: 15px;
+            padding: 35px;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .activity-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid #6c757d;
+            border-radius: 15px;
+            padding: 35px;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .bookmark-visual {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 6px solid #667eea;
+            margin: 25px 0;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.1);
+        }
+        
+        .bookmark-item {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            border-radius: 8px;
+            border-left: 4px solid;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .bookmark-item:nth-child(1) { border-left-color: #e74c3c; margin-left: 0; }
+        .bookmark-item:nth-child(2) { border-left-color: #f39c12; margin-left: 20px; }
+        .bookmark-item:nth-child(3) { border-left-color: #3498db; margin-left: 40px; }
+        .bookmark-item:nth-child(4) { border-left-color: #2ecc71; margin-left: 60px; }
+        
+        .bookmark-item:hover {
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+            transform: translateX(10px);
+        }
+        
+        ul, ol {
+            margin: 25px 0;
+            padding-left: 35px;
+        }
+        
+        li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 12px;
+        }
+        
+        li::marker {
+            color: #667eea;
+        }
+        
+        ol li {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.08);
+            margin-bottom: 20px;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #bbdefb 0%, #c8e6c9 100%);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.15);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 45px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse-bg 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-bg {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+        
+        .time-indicator {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            font-weight: 600;
+            margin: 15px 0;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3); }
+            to { box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5); }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .objectives-grid,
+            .element-showcase,
+            .alt-text-demo,
+            .link-demo,
+            .typography-tips {
+                grid-template-columns: 1fr;
+            }
+            
+            .flow-steps {
+                flex-direction: column;
+            }
+            
+            .flow-step::after {
+                display: none;
+            }
+            
+            .section {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../curso_accesibilidad_html.html" class="nav-button" aria-label="Volver a la página anterior">
+            ← Volver
+        </a>
+        
+        <header class="header">
+            <h1><span class="emoji">📘</span>Módulo 3: Elementos accesibles en InDesign</h1>
+        </header>
+
+        <section class="section">
+            <h2><span class="emoji">🎯</span>Objetivos del módulo</h2>
+            <div class="objectives-grid">
+                <div class="objective-card">
+                    <strong>Aprender</strong> a añadir <span class="highlight">texto alternativo</span> a imágenes y gráficos.
+                </div>
+                <div class="objective-card">
+                    <strong>Crear</strong> <span class="highlight">hipervínculos accesibles</span> con descripciones claras.
+                </div>
+                <div class="objective-card">
+                    <strong>Definir</strong> correctamente el <span class="highlight">orden de lectura</span> mediante el panel de Artículos.
+                </div>
+                <div class="objective-card">
+                    <strong>Incluir</strong> <span class="highlight">marcadores de navegación</span> para facilitar la usabilidad en PDF.
+                </div>
+                <div class="objective-card">
+                    <strong>Aplicar</strong> buenas prácticas en el uso de fuentes y elementos visuales.
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><span class="emoji">📝</span>Contenido teórico</h2>
+            
+            <h3>1. Texto alternativo en imágenes y gráficos</h3>
+            <div class="element-showcase">
+                <div class="element-card">
+                    <h4>Imágenes informativas</h4>
+                    <p>Deben tener un <span class="highlight">texto alternativo</span> (alt text).</p>
+                </div>
+                <div class="element-card">
+                    <h4>Imágenes decorativas</h4>
+                    <p>Deben marcarse como "arte decorativo" → se ignoran en lectores de pantalla.</p>
+                </div>
+                <div class="element-card">
+                    <h4>Descripción efectiva</h4>
+                    <p>El texto alternativo debe ser <span class="highlight">breve y descriptivo</span> (no repetir lo evidente).</p>
+                </div>
+            </div>
+
+            <div class="alt-text-demo">
+                <div class="alt-demo-bad">
+                    <h4>Incorrecto</h4>
+                    <p><em>"Imagen de un gráfico de barras"</em></p>
+                    <small>Demasiado genérico y no aporta información útil</small>
+                </div>
+                <div class="alt-demo-good">
+                    <h4>Correcto</h4>
+                    <p><em>"Gráfico de barras que muestra aumento de ventas de enero a marzo"</em></p>
+                    <small>Describe la información relevante del gráfico</small>
+                </div>
+            </div>
+
+            <h3>2. Hipervínculos accesibles</h3>
+            <ul>
+                <li>No usar frases genéricas como <em>"haz clic aquí"</em>.</li>
+                <li>El texto del enlace debe describir el destino.</li>
+                <li>En InDesign → menú de hipervínculos permite añadir descripción accesible.</li>
+            </ul>
+
+            <div class="link-demo">
+                <div class="link-bad">
+                    <h4>❌ Incorrecto</h4>
+                    <p>"Haz clic aquí para ver la guía"</p>
+                    <small>No describe el destino</small>
+                </div>
+                <div class="link-good">
+                    <h4>✅ Correcto</h4>
+                    <p>"Descargar la guía de accesibilidad en PDF"</p>
+                    <small>Describe claramente qué va a obtener</small>
+                </div>
+            </div>
+
+            <h3>3. Orden de lectura con el panel de Artículos</h3>
+            <div class="reading-order-visual">
+                <p><strong>Concepto clave:</strong> El orden de lectura visual ≠ orden de lectura accesible.</p>
+                <p>En InDesign se organiza con el <span class="highlight">panel de Artículos</span>.</p>
+                <p>Se arrastran y ordenan los elementos de la página en la secuencia correcta.</p>
+                <p><strong>Fundamental</strong> para que un lector de pantalla lea el documento con lógica.</p>
+            </div>
+
+            <div class="flow-steps">
+                <div class="flow-step">
+                    <strong>1. Abrir</strong><br>
+                    Panel de Artículos
+                </div>
+                <div class="flow-step">
+                    <strong>2. Arrastrar</strong><br>
+                    Elementos en orden
+                </div>
+                <div class="flow-step">
+                    <strong>3. Verificar</strong><br>
+                    Secuencia lógica
+                </div>
+                <div class="flow-step">
+                    <strong>4. Exportar</strong><br>
+                    Manteniendo orden
+                </div>
+            </div>
+
+            <div class="example-box">
+                <strong>Ejemplo:</strong><br>
+                Un folleto con texto en columnas → el lector de pantalla puede leer primero la segunda columna si no está bien definido en el panel de Artículos.
+            </div>
+
+            <h3>4. Marcadores de navegación</h3>
+            <ul>
+                <li>Los <span class="highlight">marcadores</span> permiten saltar entre secciones de un PDF.</li>
+                <li>Se generan a partir de estilos de título en InDesign (si están bien configurados).</li>
+                <li>Son esenciales en documentos largos (manuales, informes, guías).</li>
+            </ul>
+
+            <div class="bookmark-visual">
+                <div class="bookmark-item">📖 Capítulo 1: Introducción</div>
+                <div class="bookmark-item">📊 Capítulo 2: Datos y análisis</div>
+                <div class="bookmark-item">💡 Capítulo 3: Recomendaciones</div>
+                <div class="bookmark-item">📋 Anexos</div>
+            </div>
+
+            <div class="example-box">
+                <strong>Ejemplo:</strong><br>
+                Un manual de 50 páginas con marcadores → el usuario con lector de pantalla puede saltar directamente al capítulo que necesita.
+            </div>
+
+            <h3>5. Buenas prácticas tipográficas</h3>
+            <div class="typography-tips">
+                <div class="typo-tip">
+                    <h4>🔤 Fuentes legibles</h4>
+                    <p>Sans serif o serif claras</p>
+                </div>
+                <div class="typo-tip">
+                    <h4>🔍 Tamaño mínimo</h4>
+                    <p>12pt en texto normal</p>
+                </div>
+                <div class="typo-tip">
+                    <h4>🚫 Evitar cursivas</h4>
+                    <p>No abusar de cursivas ni mayúsculas</p>
+                </div>
+                <div class="typo-tip">
+                    <h4>✨ Sin decorativas</h4>
+                    <p>Evitar fuentes decorativas</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section practices-box">
+            <h2><span class="emoji">✅</span>Buenas prácticas generales</h2>
+            <ul>
+                <li>Todo elemento visual debe tener una función clara: <span class="highlight">informativa o decorativa</span>.</li>
+                <li>Usar títulos descriptivos en hipervínculos.</li>
+                <li>Revisar siempre el orden de lectura con el panel de Artículos.</li>
+                <li>Añadir marcadores en documentos de más de 5 páginas.</li>
+            </ul>
+        </section>
+
+        <section class="section activity-box">
+            <h2><span class="emoji">🧩</span>Actividad práctica</h2>
+            <ol>
+                <li>Entregar un documento en InDesign con:
+                    <ul>
+                        <li>Imágenes sin texto alternativo.</li>
+                        <li>Hipervínculos genéricos.</li>
+                        <li>Orden de lectura incorrecto.</li>
+                        <li>Documento largo sin marcadores.</li>
+                    </ul>
+                </li>
+                <li><strong>Pedir que:</strong>
+                    <ul>
+                        <li>Añadan texto alternativo a cada imagen informativa.</li>
+                        <li>Marquen las imágenes decorativas como tales.</li>
+                        <li>Corrijan los hipervínculos con descripciones adecuadas.</li>
+                        <li>Organicen los elementos con el panel de Artículos.</li>
+                        <li>Generen marcadores de navegación.</li>
+                    </ul>
+                </li>
+                <li>Exportar el documento a PDF y comprobar que los cambios se conservan.</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h2><span class="emoji">📦</span>Material de apoyo sugerido</h2>
+            <ul>
+                <li>PDF de referencia con <span class="highlight">texto alternativo correcto vs incorrecto</span>.</li>
+                <li>Ejemplo de documento con hipervínculos accesibles.</li>
+                <li>Capturas del <span class="highlight">panel de Artículos</span> y flujo de orden de lectura.</li>
+            </ul>
+            
+            <div class="time-indicator">
+                ⏱️ Duración total: 2 horas
+            </div>
+            
+            <div style="margin-top: 25px; padding: 25px; background: linear-gradient(135deg, #e3f2fd, #f3e5f5); border-radius: 12px; border-left: 5px solid #667eea;">
+                <strong>👉 Este módulo ocupa 2h:</strong><br>
+                • 1h explicación + demostraciones en InDesign.<br>
+                • 45 min práctica en clase con documento de ejemplo.<br>
+                • 15 min revisión grupal y discusión de resultados.
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p><strong>Módulo 3 completado</strong> - Elementos accesibles en InDesign</p>
+            <p style="margin-top: 12px; opacity: 0.9;">¡Dominando los elementos clave para documentos verdaderamente accesibles!</p>
+        </footer>
+        
+        <a href="../curso_accesibilidad_html.html" class="nav-button" aria-label="Volver a la página anterior">
+            ← Volver
+        </a>
+    </div>
+</body>
+</html>

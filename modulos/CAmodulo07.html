@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 7: Buenas prácticas y casos prácticos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+            background: #f9f9f9;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: -20px -20px 30px -20px;
+            font-size: 1.8em;
+        }
+        h2 {
+            color: #4a5568;
+            border-left: 4px solid #667eea;
+            padding-left: 15px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #667eea;
+            margin-top: 25px;
+        }
+        .objectives {
+            background: #e6f3ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .tip {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #f39c12;
+        }
+        .best-practices {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .activity {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .time-info {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        .checklist {
+            background: #fff8e1;
+            border: 1px solid #ffeb3b;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+        code {
+            background: #f1f3f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        .nav-button {
+            background: #667eea;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            margin: 20px 0;
+        }
+        .nav-button:hover {
+            background: #5a67d8;
+        }
+        .nav-button:focus {
+            outline: 2px solid #667eea;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../curso_accesibilidad_html.html" class="nav-button" aria-label="Volver a la página anterior">
+            ← Volver
+        </a>
+        
+        <h1><span class="emoji">📘</span>Módulo 7: Buenas prácticas y casos prácticos</h1>
+
+        <div class="objectives">
+            <h2><span class="emoji">🎯</span>Objetivos del módulo</h2>
+            <ul>
+                <li>Conocer los errores más comunes en accesibilidad desde InDesign y Acrobat.</li>
+                <li>Aplicar un checklist práctico antes de entregar un PDF.</li>
+                <li>Desarrollar un flujo de trabajo colaborativo (diseñador ↔ revisor).</li>
+                <li>Consolidar el aprendizaje mediante un taller integrador.</li>
+            </ul>
+        </div>
+
+        <h2><span class="emoji">📝</span>Contenido teórico</h2>
+
+        <div class="checklist">
+            <h3>1. Checklist de accesibilidad para InDesign → PDF</h3>
+            <p>Antes de exportar un PDF accesible, el diseñador debe verificar:</p>
+            <ul>
+                <li>¿Todos los textos están con <strong>estilos aplicados</strong> (no formateo manual)?</li>
+                <li>¿Hay <strong>jerarquía de títulos</strong> (H1, H2, H3)?</li>
+                <li>¿Las <strong>imágenes tienen texto alternativo</strong> o están marcadas como decorativas?</li>
+                <li>¿Las <strong>listas y tablas</strong> están creadas con las funciones correctas?</li>
+                <li>¿El <strong>idioma</strong> del documento está definido?</li>
+                <li>¿Hay <strong>marcadores</strong> en documentos largos?</li>
+                <li>¿Se ha exportado como <strong>PDF marcado</strong>?</li>
+            </ul>
+        </div>
+
+        <h3>2. Errores más comunes</h3>
+        <ul>
+            <li>Crear títulos visuales sin usar estilos → se pierden en PDF.</li>
+            <li>Imágenes sin texto alternativo → inaccesibles.</li>
+            <li>Orden de lectura desorganizado → caos en lectores de pantalla.</li>
+            <li>Formularios sin etiquetas → imposibles de usar con teclado.</li>
+            <li>Exportar como imagen → documento totalmente inaccesible.</li>
+        </ul>
+
+        <h3>3. Flujo de trabajo recomendado</h3>
+        <ul>
+            <li><strong>Diseñador/maquetista</strong>: prepara el documento accesible en InDesign.</li>
+            <li><strong>Exportación</strong>: se hace con PDF interactivo marcado.</li>
+            <li><strong>Revisor</strong>: valida en Acrobat con el comprobador + PAC.</li>
+            <li><strong>Equipo</strong>: prueba con lector de pantalla y checklist final.</li>
+        </ul>
+
+        <div class="tip">
+            <strong>👉</strong> Esto ahorra tiempo y evita que la accesibilidad sea un "parche" al final del proyecto.
+        </div>
+
+        <div class="best-practices">
+            <h2><span class="emoji">✅</span>Buenas prácticas generales</h2>
+            <ul>
+                <li>Crear <strong>plantillas accesibles</strong> en InDesign para proyectos recurrentes.</li>
+                <li>Documentar cada proyecto con un <strong>informe de accesibilidad</strong>.</li>
+                <li>Probar siempre con <strong>mínimo un lector de pantalla</strong>.</li>
+                <li>Incorporar accesibilidad en el <strong>flujo de trabajo habitual</strong>, no al final.</li>
+            </ul>
+        </div>
+
+        <div class="activity">
+            <h2><span class="emoji">🧩</span>Taller integrador</h2>
+            <ol>
+                <li>Cada alumno recibe un documento en InDesign <strong>con errores intencionales</strong> (títulos manuales, imágenes sin alt, listas con guiones, etc.).</li>
+                <li>Tareas:
+                    <ul>
+                        <li>Corregir el documento en InDesign (aplicar estilos, alt text, orden de lectura).</li>
+                        <li>Exportar a PDF accesible.</li>
+                        <li>Validar en Acrobat y corregir errores.</li>
+                        <li>Verificar con PAC.</li>
+                        <li>Probar con NVDA.</li>
+                    </ul>
+                </li>
+                <li>Entregar el PDF final como "<strong>producto accesible</strong>".</li>
+            </ol>
+        </div>
+
+        <h2><span class="emoji">📦</span>Material de apoyo sugerido</h2>
+        <ul>
+            <li>Checklist en PDF para que lo usen en futuros proyectos.</li>
+            <li>Documento "problemático" en InDesign para el taller.</li>
+            <li>Ejemplo de informe de accesibilidad sencillo.</li>
+        </ul>
+
+        <div class="time-info">
+            <strong>👉 Este módulo ocupa 1h:</strong>
+            <ul>
+                <li>15 min repaso de checklist y errores comunes.</li>
+                <li>30 min taller práctico en grupo.</li>
+                <li>15 min puesta en común y discusión.</li>
+            </ul>
+        </div>
+        
+        <a href="../curso_accesibilidad_html.html" class="nav-button" aria-label="Volver a la página anterior">
+            ← Volver
+        </a>
+    </div>
+</body>
+</html>

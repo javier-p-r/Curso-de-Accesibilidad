@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 1: Introducción a la accesibilidad en publicaciones digitales</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .nav-button {
+            background: #667eea;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            margin: 20px 0;
+        }
+        .nav-button:hover {
+            background: #5a67d8;
+        }
+        .nav-button:focus {
+            outline: 2px solid #667eea;
+            outline-offset: 2px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 20%, transparent 21%);
+            background-size: 40px 40px;
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: rotate(0deg) translate(-50%, -50%); }
+            100% { transform: rotate(360deg) translate(-50%, -50%); }
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 10px;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 10px;
+        }
+        
+        .section h3 {
+            color: #495057;
+            margin: 25px 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .objective-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #28a745;
+            transition: transform 0.3s ease;
+        }
+        
+        .objective-card:hover {
+            transform: translateX(10px);
+        }
+        
+        .pour-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .pour-card {
+            text-align: center;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pour-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        
+        .pour-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pour-card h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .disability-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .disability-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-top: 4px solid;
+        }
+        
+        .disability-card:nth-child(1) { border-top-color: #e74c3c; }
+        .disability-card:nth-child(2) { border-top-color: #f39c12; }
+        .disability-card:nth-child(3) { border-top-color: #3498db; }
+        .disability-card:nth-child(4) { border-top-color: #9b59b6; }
+        
+        .disability-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .example-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .example-box::before {
+            content: '💡';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: #fff3cd;
+            padding: 5px;
+            font-size: 1.2em;
+        }
+        
+        .tip-box {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .tip-box::before {
+            content: '👉';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: #d1ecf1;
+            padding: 5px;
+            font-size: 1.2em;
+        }
+        
+        .practices-box {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .activity-box {
+            background: #e2e3e5;
+            border: 1px solid #d6d8db;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        li::marker {
+            color: #667eea;
+        }
+        
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .tech-item {
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-item:hover {
+            background: #764ba2;
+            transform: scale(1.1);
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: #2c3e50;
+            color: white;
+            border-radius: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .objectives-grid,
+            .pour-grid,
+            .disability-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../curso_accesibilidad_html.html" class="nav-button" aria-label="Volver a la página anterior">
+            ← Volver
+        </a>
+        
+        <header class="header">
+            <h1><span class="emoji">📘</span>Módulo 1: Introducción a la accesibilidad en publicaciones digitales</h1>
+        </header>
+
+        <section class="section">
+            <h2><span class="emoji">🎯</span>Objetivos del módulo</h2>
+            <div class="objectives-grid">
+                <div class="objective-card">
+                    <strong>Comprender</strong> qué significa accesibilidad digital.
+                </div>
+                <div class="objective-card">
+                    <strong>Conocer</strong> los principios básicos (POUR).
+                </div>
+                <div class="objective-card">
+                    <strong>Reconocer</strong> los tipos de discapacidad que afectan a la lectura y el acceso a documentos.
+                </div>
+                <div class="objective-card">
+                    <strong>Identificar</strong> normativas y estándares aplicables a PDFs.
+                </div>
+                <div class="objective-card">
+                    <strong>Entender</strong> la importancia de las tecnologías de asistencia.
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><span class="emoji">📝</span>Contenido teórico</h2>
+            
+            <h3>1. ¿Qué es la accesibilidad digital?</h3>
+            <p>La <span class="highlight">accesibilidad digital</span> es el conjunto de técnicas, normas y buenas prácticas que aseguran que <strong>cualquier persona</strong>, independientemente de sus capacidades o limitaciones, pueda <strong>usar, comprender y navegar</strong> un contenido digital (PDF, web, EPUB...).</p>
+            
+            <div class="example-box">
+                <p><strong>Ejemplo cotidiano:</strong> una rampa en un edificio → lo mismo debe existir en un PDF: estructura clara, texto alternativo, orden lógico de lectura.</p>
+            </div>
+            
+            <p><strong>Importancia:</strong> además de ser un <span class="highlight">derecho</span> reconocido (Convención de la ONU sobre los derechos de las personas con discapacidad), también es una <span class="highlight">obligación legal</span> en muchos países.</p>
+
+            <h3>2. Principios POUR</h3>
+            <p>Los <span class="highlight">principios fundamentales de la accesibilidad</span>, definidos en WCAG, son:</p>
+            
+            <div class="pour-grid">
+                <div class="pour-card">
+                    <h4>Perceptible</h4>
+                    <p>La información debe poder percibirse con los sentidos (ej: texto alternativo en imágenes).</p>
+                </div>
+                <div class="pour-card">
+                    <h4>Operable</h4>
+                    <p>El usuario debe poder navegar e interactuar (ej: con teclado, sin necesidad de ratón).</p>
+                </div>
+                <div class="pour-card">
+                    <h4>Comprensible</h4>
+                    <p>El contenido debe ser claro y predecible (ej: títulos jerárquicos, lenguaje sencillo).</p>
+                </div>
+                <div class="pour-card">
+                    <h4>Robusto</h4>
+                    <p>El documento debe ser compatible con distintas tecnologías (lectores de pantalla, dispositivos móviles).</p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <strong>Ejemplo:</strong><br>
+                Un PDF con texto como imagen (no seleccionable) es <strong>no perceptible</strong>.<br>
+                Un formulario sin orden de tabulación es <strong>no operable</strong>.<br>
+                Un documento sin títulos claros es <strong>no comprensible</strong>.<br>
+                Un PDF sin etiquetas de estructura es <strong>no robusto</strong>.
+            </div>
+
+            <h3>3. Tipos de discapacidad y su relación con documentos digitales</h3>
+            <div class="disability-grid">
+                <div class="disability-card">
+                    <h4>Visuales</h4>
+                    <p>Ceguera, baja visión, daltonismo.</p>
+                    <p><strong>Necesitan:</strong> lectores de pantalla, alto contraste, texto alternativo.</p>
+                </div>
+                <div class="disability-card">
+                    <h4>Auditivas</h4>
+                    <p>Sordera, hipoacusia.</p>
+                    <p><strong>Importante en documentos multimedia:</strong> subtítulos, transcripciones.</p>
+                </div>
+                <div class="disability-card">
+                    <h4>Motoras</h4>
+                    <p>Dificultades en movilidad o uso del ratón.</p>
+                    <p><strong>Requieren:</strong> navegación con teclado, órdenes de tabulación bien definidas.</p>
+                </div>
+                <div class="disability-card">
+                    <h4>Cognitivas</h4>
+                    <p>Dislexia, déficit de atención, problemas de memoria.</p>
+                    <p><strong>Necesitan:</strong> lenguaje sencillo, estructuras claras, navegación lógica.</p>
+                </div>
+            </div>
+
+            <h3>4. Tecnologías de asistencia</h3>
+            <p>Son programas o dispositivos que ayudan a acceder al contenido:</p>
+            
+            <div class="tech-list">
+                <div class="tech-item">Lectores de pantalla (NVDA, JAWS, VoiceOver)</div>
+                <div class="tech-item">Lupas de pantalla (ZoomText)</div>
+                <div class="tech-item">Navegación por teclado (tabulación, atajos)</div>
+                <div class="tech-item">Dispositivos alternativos (conmutadores, trackballs, pantallas braille)</div>
+            </div>
+
+            <div class="tip-box">
+                Un PDF mal estructurado (sin etiquetas) es casi imposible de interpretar por un lector de pantalla.
+            </div>
+
+            <h3>5. Normativas y estándares</h3>
+            <ul>
+                <li><strong>WCAG 2.1/2.2</strong> → pautas globales de accesibilidad.</li>
+                <li><strong>PDF/UA (ISO 14289)</strong> → estándar específico para asegurar que los PDFs sean accesibles.</li>
+                <li><strong>Legislación local:</strong>
+                    <ul>
+                        <li><strong>UE</strong> → Directiva de Accesibilidad Web + European Accessibility Act.</li>
+                        <li><strong>España</strong> → Real Decreto 1112/2018.</li>
+                        <li><strong>EE.UU.</strong> → Section 508, ADA.</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <p><strong>📌 Lo importante:</strong> <span class="highlight">casi todas se basan en WCAG</span>.</p>
+        </section>
+
+        <section class="section practices-box">
+            <h2><span class="emoji">✅</span>Buenas prácticas iniciales</h2>
+            <ul>
+                <li>No usar texto en imágenes → siempre texto real.</li>
+                <li>Siempre definir idioma del documento.</li>
+                <li>Mantener jerarquía de títulos clara.</li>
+                <li>Usar suficiente contraste entre texto y fondo.</li>
+                <li>Evitar tablas para maquetar (solo para datos).</li>
+            </ul>
+        </section>
+
+        <section class="section activity-box">
+            <h2><span class="emoji">🧩</span>Actividad práctica</h2>
+            <ol>
+                <li>Proporcionar a los alumnos un <strong>PDF no accesible</strong> (ejemplo: folleto exportado solo como imagen).</li>
+                <li>Pedir que lo <strong>abran con un lector de pantalla gratuito (NVDA)</strong>.</li>
+                <li>Que intenten navegar y leerlo → comprobarán las <span class="highlight">barreras reales</span>.</li>
+                <li>Debatir en grupo: ¿qué problemas encontraron? ¿qué barreras percibieron según los tipos de discapacidad?</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h2><span class="emoji">📦</span>Material de apoyo sugerido</h2>
+            <ul>
+                <li>Resumen visual de los <strong>principios POUR</strong>.</li>
+                <li>Tabla comparativa: <strong>tipos de discapacidad ↔ problemas habituales en PDF</strong>.</li>
+                <li>Lista básica de <strong>tecnologías de asistencia</strong> con capturas de pantalla.</li>
+            </ul>
+            
+            <div class="tip-box">
+                <strong>👉 Con esto tienes un módulo completo de 2h:</strong><br>
+                • 1h teoría + ejemplos.<br>
+                • 30 min discusión y buenas prácticas.<br>
+                • 30 min actividad práctica con PDF no accesible.
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p><strong>Módulo 1 completado</strong> - Introducción a la accesibilidad en publicaciones digitales</p>
+        </footer>
+        
+        <a href="../curso_accesibilidad_html.html" class="nav-button" aria-label="Volver a la página anterior">
+            ← Volver
+        </a>
+    </div>
+</body>
+</html>
